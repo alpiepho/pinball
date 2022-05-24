@@ -210,8 +210,8 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "main.dart.js",
-"index.html",
+  "https://alpiepho.github.io/pinball/main.dart.js",
+"https://alpiepho.github.io/pinball/index.html",
 "assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
