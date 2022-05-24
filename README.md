@@ -1,4 +1,46 @@
-# I/O Pinball
+# I/O Pinball (alpiepho fork)
+
+When I showed this to some freinds I was challenged..."now you need to change it so the ball is the teams logo?".  Challenged Accepted.
+
+This project is a fork of the original project (https://github.com/flutter/pinball) with a few additions:
+
+- changed ball.png as challenged
+- build with peanut script to host of gh-pages
+- build as an installable PWA
+- change the background screens to reflect the team
+
+The run_peanut.sh script was particularly tricky...turns out that gh-pages does not like to serve assets with "__" in the url.
+
+NOTE: I did disable the Google analytics.  And I don't think the global scoring will work.  A future option or another project, I will look into keeping common scores in Firebase as the origianl application does.
+
+
+## Get Application
+Version: 0.1
+
+GH-Pages site: https://alpiepho.github.io/pinball/
+
+or QR Code:
+
+![QR Code](./qr-code.png)
+
+## "Install" on iPhone
+
+This application is a Web application known as a PWA (progressive web application).  It is possible to add a PWA to the home screen of an iPhone
+like it is a downloaded application (there is a similare mechanism for Android that is not discused here).  Use the following steps:
+
+1. Open the above link in Safari and click on up-arrow
+2. Click on "Add to Home Screen"
+3. Select "Add"
+
+## References
+
+Icons created with https://appicon.co/  NOTE: original image should be square to avoid white edges on IOS Home screen.
+
+The qr code was generated from:
+https://www.the-qrcode-generator.com/
+
+
+# I/O Pinball (Original)
 
 [![Pinball Header][logo]][pinball_link]
 
