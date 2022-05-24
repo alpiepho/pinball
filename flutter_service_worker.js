@@ -4,10 +4,10 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "e2cbcdee12b227f9269d22f45bc120ce",
-"./__/firebase/8.10.1/firebase-app.js": "0a721e98429ac9115e29fa60984d1cb3",
-"./__/firebase/8.10.1/firebase-auth.js": "52b6cb3149fc7db46181ccf570f142c6",
-"./__/firebase/8.10.1/firebase-firestore.js": "0b32f883fb904e83987b7cb0b0053ebf",
-"./__/firebase/init.js": "f75ab054703e9fb5ce983eccb824032c",
+"https://alpiepho.github.io/pinball/firebase/8.10.1/firebase-app.js": "0a721e98429ac9115e29fa60984d1cb3",
+"https://alpiepho.github.io/pinball/firebase/8.10.1/firebase-auth.js": "52b6cb3149fc7db46181ccf570f142c6",
+"https://alpiepho.github.io/pinball/firebase/8.10.1/firebase-firestore.js": "0b32f883fb904e83987b7cb0b0053ebf",
+"https://alpiepho.github.io/pinball/firebase/init.js": "f75ab054703e9fb5ce983eccb824032c",
 "index.html": "79d1df52cab6eba46189e6605fc374f8",
 "/": "79d1df52cab6eba46189e6605fc374f8",
 "main.dart.js": "54eae54e906f612978fce51a4c4ad023",
