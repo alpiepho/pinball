@@ -8,10 +8,9 @@ const RESOURCES = {
 "__/firebase/8.10.1/firebase-auth.js": "52b6cb3149fc7db46181ccf570f142c6",
 "__/firebase/8.10.1/firebase-firestore.js": "0b32f883fb904e83987b7cb0b0053ebf",
 "__/firebase/init.js": "f75ab054703e9fb5ce983eccb824032c",
-"index.html": "b5e99211253b445604cb3b9ff6918db2",
-"/": "b5e99211253b445604cb3b9ff6918db2",
+"index.html": "f7a053815e9468738f10646b25d746c2",
+"/": "f7a053815e9468738f10646b25d746c2",
 "main.dart.js": "54eae54e906f612978fce51a4c4ad023",
-"flutter.js": "0816e65a103ba8ba51b174eeeeb2cb67",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/1024.png": "59e0094aaee3a1fab128a320909168b2",
 "icons/60.png": "6371c41679aeb184e8c1117f59888539",
@@ -205,21 +204,17 @@ const RESOURCES = {
 "assets/assets/images/components/space.png": "035592d0396e8378b06f864eac240b47",
 "assets/assets/images/components/key.png": "9ad21b935dae863dbd97b6b25987b50e",
 "assets/assets/images/score/mini_score_background.png": "cc418b915dc51161a3b6f29a905e04b2",
-"assets/assets/images/loading_game/io_pinball.png": "e6710a37d648336e59a9179ca1a75e4a",
-"canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
-"canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
-"canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
-"canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba"
+"assets/assets/images/loading_game/io_pinball.png": "e6710a37d648336e59a9179ca1a75e4a"
 };
 
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "https://alpiepho.github.io/pinball/main.dart.js",
-"https://alpiepho.github.io/pinball/index.html",
-"https://alpiepho.github.io/pinball/assets/NOTICES",
-"https://alpiepho.github.io/pinball/assets/AssetManifest.json",
-"https://alpiepho.github.io/pinball/assets/FontManifest.json"];
+  "main.dart.js",
+"index.html",
+"assets/NOTICES",
+"assets/AssetManifest.json",
+"assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
