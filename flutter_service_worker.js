@@ -8,8 +8,8 @@ const RESOURCES = {
 "__/firebase/8.10.1/firebase-auth.js": "52b6cb3149fc7db46181ccf570f142c6",
 "__/firebase/8.10.1/firebase-firestore.js": "0b32f883fb904e83987b7cb0b0053ebf",
 "__/firebase/init.js": "f75ab054703e9fb5ce983eccb824032c",
-"index.html": "e2225cc2438173f5ea2ae4d607950c67",
-"/": "e2225cc2438173f5ea2ae4d607950c67",
+"index.html": "ebb2e914520d50dc83aafce01cdd391e",
+"/": "ebb2e914520d50dc83aafce01cdd391e",
 "main.dart.js": "54eae54e906f612978fce51a4c4ad023",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/1024.png": "59e0094aaee3a1fab128a320909168b2",
@@ -210,8 +210,8 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "https://alpiepho.github.io/pinball/main.dart.js",
-"https://alpiepho.github.io/pinball/index.html",
+  "main.dart.js",
+"index.html",
 "assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
