@@ -404,9 +404,9 @@ class PinballAudioPlayer {
   }
 
   /// Is special debug mode
-  bool isDebugMode() {
+  bool isAutoMode() {
     final result = _disableToggleCount > 7;
-    print('isDebugMode $result');
+    print('isAutoMode $result');
     return result;
   }
 }
