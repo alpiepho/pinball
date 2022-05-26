@@ -35,14 +35,16 @@ like it is a downloaded application (there is a similare mechanism for Android t
 ## TODO List
 
 - [x] add todo list ot README
-- [ ] fix open source links
-- [ ] toggle sound (from i/info dialog?)
-- [ ] allow i/info button from all screens, even when playing (pause game?)
-- [ ] debug mode from hidden press
+- [x] fix open source links
+- [x] toggle sound (see Issues below)
+- [x] allow i/info button from all screens, even when playing (pause game?)
+- [x] debug mode from hidden press
 - [ ] auto mode from hidden press
 - [ ] can we add firebase to gh page? need login?
 
+## Issues
 
+- attempted to add sound mute.  works partially.  MUST disable BEFORE starting any games. Restart app to re-enable.
 
 ## References
 

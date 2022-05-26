@@ -15,12 +15,12 @@ import 'package:platform_helper/platform_helper.dart';
 import 'package:share_repository/share_repository.dart';
 
 class PinballGamePage extends StatelessWidget {
-  const PinballGamePage({
+  PinballGamePage({
     Key? key,
     this.isDebugMode = kDebugMode,
   }) : super(key: key);
 
-  final bool isDebugMode;
+  bool isDebugMode;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,7 @@ class PinballGamePage extends StatelessWidget {
     final shareRepository = context.read<ShareRepository>();
     final platformHelper = context.read<PlatformHelper>();
     final gameBloc = context.read<GameBloc>();
+    if (audioPlayer.isDebugMode()) isDebugMode = true;
     final game = isDebugMode
         ? DebugPinballGame(
             characterThemeBloc: characterThemeBloc,
@@ -85,6 +86,7 @@ class PinballGameLoadedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final platformHelper = context.read<PlatformHelper>();
     return StartGameListener(
       child: Stack(
         children: [
@@ -95,36 +97,43 @@ class PinballGameLoadedView extends StatelessWidget {
                   game.focusNode.requestFocus();
                 }
               },
-              child: GameWidget<PinballGame>(
-                game: game,
-                focusNode: game.focusNode,
-                initialActiveOverlays: const [PinballGame.playButtonOverlay],
-                overlayBuilderMap: {
-                  PinballGame.playButtonOverlay: (_, game) => const Positioned(
-                        bottom: 20,
-                        right: 0,
-                        left: 0,
-                        child: PlayButtonOverlay(),
-                      ),
-                  PinballGame.mobileControlsOverlay: (_, game) => Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: MobileControls(game: game),
-                      ),
-                  PinballGame.replayButtonOverlay: (context, game) =>
-                      const Positioned(
-                        bottom: 20,
-                        right: 0,
-                        left: 0,
-                        child: ReplayButtonOverlay(),
-                      )
-                },
+              // scale to fit mobile screen without losing plunger
+              child: Transform.scale(
+                scale: platformHelper.isMobile ? 0.85 : 1.0,
+                child: GameWidget<PinballGame>(
+                  game: game,
+                  focusNode: game.focusNode,
+                  initialActiveOverlays: const [PinballGame.playButtonOverlay],
+                  overlayBuilderMap: {
+                    PinballGame.playButtonOverlay: (_, game) =>
+                        const Positioned(
+                          bottom: 20,
+                          right: 0,
+                          left: 0,
+                          child: PlayButtonOverlay(),
+                        ),
+                    PinballGame.mobileControlsOverlay: (_, game) => Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: MobileControls(game: game),
+                        ),
+                    PinballGame.replayButtonOverlay: (context, game) =>
+                        const Positioned(
+                          bottom: 20,
+                          right: 0,
+                          left: 0,
+                          child: ReplayButtonOverlay(),
+                        )
+                  },
+                ),
               ),
             ),
           ),
           const _PositionedGameHud(),
           const _PositionedInfoIcon(),
+          const _PositionedSoundIcon(),
+          const _PositionedReplayIcon(),
         ],
       ),
     );
@@ -164,17 +173,105 @@ class _PositionedInfoIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isPlaying = context.select(
+      (StartGameBloc bloc) => bloc.state.status == StartGameStatus.play,
+    );
+    final isGameOver = context.select(
+      (GameBloc bloc) => bloc.state.status.isGameOver,
+    );
+
     return Positioned(
-      top: 0,
+      top: (isPlaying && !isGameOver) ? 100.0 : 0,
       left: 0,
       child: BlocBuilder<GameBloc, GameState>(
         builder: (context, state) {
           return Visibility(
-            visible: state.status.isGameOver,
+            //visible: state.status.isGameOver,
             child: IconButton(
               iconSize: 50,
               icon: const Icon(Icons.info, color: PinballColors.white),
               onPressed: () => showMoreInformationDialog(context),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _PositionedSoundIcon extends StatefulWidget {
+  const _PositionedSoundIcon({Key? key}) : super(key: key);
+
+  @override
+  State<_PositionedSoundIcon> createState() => _PositionedSoundIconState();
+}
+
+class _PositionedSoundIconState extends State<_PositionedSoundIcon> {
+  var _mute = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final isPlaying = context.select(
+      (StartGameBloc bloc) => bloc.state.status == StartGameStatus.play,
+    );
+    final isGameOver = context.select(
+      (GameBloc bloc) => bloc.state.status.isGameOver,
+    );
+
+    final audioPlayer = context.read<PinballAudioPlayer>();
+
+    return Positioned(
+      top: (isPlaying && !isGameOver) ? 100.0 : 0,
+      right: 0,
+      child: BlocBuilder<GameBloc, GameState>(
+        builder: (context, state) {
+          return Visibility(
+            //visible: state.status.isGameOver,
+            child: IconButton(
+                iconSize: 50,
+                icon: Icon(
+                  _mute ? Icons.volume_off : Icons.volume_up,
+                  color: PinballColors.white,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _mute = !_mute;
+                  });
+                  _mute ? audioPlayer.muteAll() : audioPlayer.playAll();
+                }),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _PositionedReplayIcon extends StatelessWidget {
+  const _PositionedReplayIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final isPlaying = context.select(
+      (StartGameBloc bloc) => bloc.state.status == StartGameStatus.play,
+    );
+    final isGameOver = context.select(
+      (GameBloc bloc) => bloc.state.status.isGameOver,
+    );
+
+    return Positioned(
+      top: (isPlaying && !isGameOver) ? 150.0 : 50.0,
+      right: 0,
+      child: BlocBuilder<GameBloc, GameState>(
+        builder: (context, state) {
+          return Visibility(
+            //visible: state.status.isGameOver,
+            child: IconButton(
+              iconSize: 50,
+              icon: const Icon(Icons.restart_alt, color: PinballColors.white),
+              onPressed: () {
+                context.read<GameBloc>().add(const GameStarted());
+                context.read<StartGameBloc>().add(const ReplayTapped());
+              },
             ),
           );
         },

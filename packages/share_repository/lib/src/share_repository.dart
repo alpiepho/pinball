@@ -12,13 +12,15 @@ class ShareRepository {
   final String _appUrl;
 
   /// Url to the Github Open Source Pinball project.
-  static const openSourceCode = 'https://github.com/flutter/pinball';
+  //static const openSourceCode = 'https://github.com/flutter/pinball';
+  static const openSourceCode = 'https://github.com/alpiepho/pinball';
 
   /// Url to the Google IO Event.
   static const googleIOEvent = 'https://events.google.com/io/';
 
   /// Url to the Pinball game.
-  static const pinballGameUrl = 'https://pinball.flutter.dev';
+  //static const pinballGameUrl = 'https://pinball.flutter.dev';
+  static const pinballGameUrl = 'https://alpiepho.github.io/pinball/';
 
   /// Returns a url to share the [value] on the given [platform].
   ///

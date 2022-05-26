@@ -345,7 +345,7 @@ class PinballAudioPlayer {
         preCacheSingleAudio: _preCacheSingleAudio,
         loopSingleAudio: _loopSingleAudio,
         path: Assets.music.background,
-        volume: .6,
+        volume: 0.2,
       ),
     };
   }
@@ -362,10 +362,14 @@ class PinballAudioPlayer {
 
   final Random _seed;
 
+  bool _disableSound = false;
+  int _disableToggleCount = 0;
+
   /// Registered audios on the Player.
   @visibleForTesting
   // ignore: library_private_types_in_public_api
   late final Map<PinballAudio, _Audio> audios;
+  late final Map<PinballAudio, AudioPlayer> audioHandles;
 
   /// Loads the sounds effects into the memory.
   List<Future<void> Function()> load() {
@@ -380,6 +384,29 @@ class PinballAudioPlayer {
       audios.containsKey(audio),
       'Tried to play unregistered audio $audio',
     );
-    audios[audio]?.play();
+    if (!_disableSound) {
+      audios[audio]?.play();
+    }
+  }
+
+  /// Mute all audio
+  void muteAll() {
+    _disableSound = true;
+    _disableToggleCount += 1;
+    print('_disableSound $_disableSound');
+  }
+
+  /// Play all audio
+  void playAll() {
+    _disableSound = false;
+    _disableToggleCount += 1;
+    print('_disableSound $_disableSound');
+  }
+
+  /// Is special debug mode
+  bool isDebugMode() {
+    final result = _disableToggleCount > 7;
+    print('isDebugMode $result');
+    return result;
   }
 }

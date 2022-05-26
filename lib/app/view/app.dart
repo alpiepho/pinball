@@ -57,7 +57,7 @@ class App extends StatelessWidget {
             GlobalMaterialLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          home: const PinballGamePage(),
+          home: PinballGamePage(),
         ),
       ),
     );
