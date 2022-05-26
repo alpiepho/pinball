@@ -72785,7 +72785,7 @@ return A.r7(this.c,new A.eQ(s,s,r,B.c6,s,B.qz,s,B.aC),B.bd)}}
 A.Ug.prototype={
 a_(a,b){var s=null
 A.dj(b,B.a0,t.J).toString
-return A.du(A.a([B.a5q,new A.lH("Open Source Code","https://github.com/flutter/pinball",s),new A.lH("Google I/O","https://events.google.com/io/",s),new A.lH("Flutter Games","http://flutter.dev/games",s),new A.lH("How it\u2019s made","https://medium.com/flutter/i-o-pinball-powered-by-flutter-and-firebase-d22423f3f5d",s),new A.lH("Terms of Service","https://policies.google.com/terms",s),new A.lH("Privacy Policy","https://policies.google.com/privacy",s)],t.p),B.a2,B.iG,B.L)}}
+return A.du(A.a([B.a5q,new A.lH("Open Source Code","https://github.com/alpiepho/pinball",s),new A.lH("Google I/O","https://events.google.com/io/",s),new A.lH("Flutter Games","http://flutter.dev/games",s),new A.lH("How it\u2019s made","https://medium.com/flutter/i-o-pinball-powered-by-flutter-and-firebase-d22423f3f5d",s),new A.lH("Terms of Service","https://policies.google.com/terms",s),new A.lH("Privacy Policy","https://policies.google.com/privacy",s)],t.p),B.a2,B.iG,B.L)}}
 A.lH.prototype={
 a_(a,b){var s=null
 return A.Ie(!1,!0,A.f7(this.c,B.c0,A.bq(b).R8.f.eO(B.m),s,s),s,!0,s,s,s,s,s,s,s,s,s,new A.arH(this),s,s,s)}}
