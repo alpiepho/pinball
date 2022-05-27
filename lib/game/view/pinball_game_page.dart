@@ -1,6 +1,8 @@
+import 'dart:async' as async;
+
 import 'package:flame/game.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:pinball/assets_manager/assets_manager.dart';
@@ -10,6 +12,7 @@ import 'package:pinball/more_information/more_information.dart';
 import 'package:pinball/select_character/select_character.dart';
 import 'package:pinball/start_game/start_game.dart';
 import 'package:pinball_audio/pinball_audio.dart';
+import 'package:pinball_flame/pinball_flame.dart';
 import 'package:pinball_ui/pinball_ui.dart';
 import 'package:platform_helper/platform_helper.dart';
 import 'package:share_repository/share_repository.dart';
@@ -20,7 +23,8 @@ class PinballGamePage extends StatelessWidget {
     this.isDebugMode = true, //kDebugMode,
   }) : super(key: key);
 
-  bool isDebugMode;
+  final bool isDebugMode;
+  late async.Timer autoModeTimer;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +54,21 @@ class PinballGamePage extends StatelessWidget {
             gameBloc: gameBloc,
           );
 
+    // automate play for stress testing
+    autoModeTimer = async.Timer.periodic(
+      const Duration(milliseconds: 2000),
+      (_) {
+        if (audioPlayer.isAutoMode()) {
+          print('left');
+          game.triggerVirtualKeyUp(LogicalKeyboardKey.arrowLeft);
+          print('right');
+          game.triggerVirtualKeyUp(LogicalKeyboardKey.arrowRight);
+          print('enter');
+          game.triggerVirtualKeyUp(LogicalKeyboardKey.enter);
+        }
+      },
+    );
+
     return Scaffold(
       backgroundColor: PinballColors.black,
       body: BlocProvider(
@@ -61,7 +80,7 @@ class PinballGamePage extends StatelessWidget {
 }
 
 class PinballGameView extends StatelessWidget {
-  const PinballGameView(this.game, {Key? key}) : super(key: key);
+  PinballGameView(this.game, {Key? key}) : super(key: key);
 
   final PinballGame game;
 

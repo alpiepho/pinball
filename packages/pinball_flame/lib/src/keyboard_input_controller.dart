@@ -52,7 +52,9 @@ extension VirtualKeyEvents on FlameGame {
   void triggerVirtualKeyUp(LogicalKeyboardKey key) {
     final keyControllers = descendants().whereType<KeyboardInputController>();
 
+    print("triggerVirtualKeyUp");
     for (final controller in keyControllers) {
+      print("for (final controller");
       if (!controller.onVirtualKeyUp(key)) {
         break;
       }
